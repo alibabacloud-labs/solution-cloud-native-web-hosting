@@ -27,6 +27,61 @@ resource "alicloud_security_group" "group" {
   vpc_id      = alicloud_vpc.vpc.id
 }
 
+resource "alicloud_security_group_rule" "allow_http_80" {
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "80/80"
+  priority          = 1
+  security_group_id = alicloud_security_group.group.id
+  cidr_ip           = "0.0.0.0/0"
+}
+
+resource "alicloud_security_group_rule" "allow_https_443" {
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "443/443"
+  priority          = 1
+  security_group_id = alicloud_security_group.group.id
+  cidr_ip           = "0.0.0.0/0"
+}
+
+resource "alicloud_security_group_rule" "allow_ssh_22" {
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "22/22"
+  priority          = 1
+  security_group_id = alicloud_security_group.group.id
+  cidr_ip           = "0.0.0.0/0"
+}
+
+resource "alicloud_security_group_rule" "allow_rdp_3389" {
+  type              = "ingress"
+  ip_protocol       = "tcp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "3389/3389"
+  priority          = 1
+  security_group_id = alicloud_security_group.group.id
+  cidr_ip           = "0.0.0.0/0"
+}
+
+resource "alicloud_security_group_rule" "allow_all_icmp" {
+  type              = "ingress"
+  ip_protocol       = "icmp"
+  nic_type          = "intranet"
+  policy            = "accept"
+  port_range        = "-1/-1"
+  priority          = 1
+  security_group_id = alicloud_security_group.group.id
+  cidr_ip           = "0.0.0.0/0"
+}
+
 ######## VPC
 resource "alicloud_vpc" "vpc" {
   vpc_name   = var.name
@@ -75,13 +130,14 @@ resource "alicloud_kvstore_account" "example" {
   instance_id      = alicloud_kvstore_instance.example.id
 }
 
-######## PolarDB MySQL
+####### PolarDB MySQL
 resource "alicloud_polardb_cluster" "cluster" {
   db_type       = "MySQL"
   db_version    = "5.6"
   db_node_class = "polar.mysql.x4.medium"
   pay_type      = "PostPaid"
   security_ips  = ["192.168.0.0/16"]
+  vswitch_id    = alicloud_vswitch.vswitch_2.id
   description   = "wpdb"
 }
 
@@ -94,7 +150,7 @@ resource "alicloud_polardb_account" "account" {
 
 resource "alicloud_polardb_database" "default" {
   db_cluster_id = alicloud_polardb_cluster.cluster.id
-  db_name       = "test_database" ## Please change accordingly
+  db_name       = "wpdb" ## Please change accordingly
 }
 
 resource "alicloud_polardb_account_privilege" "privilege" {
@@ -149,14 +205,13 @@ resource "alicloud_slb_listener" "default" {
   cookie_timeout            = 86400
   cookie                    = "testslblistenercookie"
   health_check              = "on"
-  health_check_domain       = "ali.com"
-  health_check_uri          = "/cons"
-  health_check_connect_port = 20
+  health_check_uri          = "/"
+  health_check_connect_port = 80
   healthy_threshold         = 8
   unhealthy_threshold       = 8
   health_check_timeout      = 8
   health_check_interval     = 5
-  health_check_http_code    = "http_2xx,http_3xx"
+  health_check_http_code    = "http_2xx,http_3xx,http_4xx"
   x_forwarded_for {
     retrive_slb_ip = true
     retrive_slb_id = true
