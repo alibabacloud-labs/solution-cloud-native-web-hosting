@@ -18,6 +18,7 @@ For more information about how to use Terraform, please refer to this tutorial: 
 
 
 ### Run Demo
+
 #### Step 1: Install Apache HTTP Server and PHP on ECS
 
 - Logon to ECS via SSH
@@ -150,6 +151,7 @@ Then the following page shows, which means the installation is success.
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step2_4.png)
 
+
 #### Step 3: Configure Redis caching
 Run the following commands in sequence to download the Redis object cache plugin and unzip the plugin package: 
 ```bash
@@ -209,6 +211,7 @@ http://<SLB_EIP>/
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_5.png)
 
+
 #### Step 4 (Optional): Make custom ECS image for auto scaling
 Follow these steps to create an image from the ECS instance: 
 
@@ -218,11 +221,12 @@ Follow these steps to create an image from the ECS instance:
 
 - Select "Instance", select the target ECS that with WordPress installed previously, enter a name and a description for the image, and then click "Create". In this lab, the image name is wp_image. 
 
-![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_2.png)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step4_2.png)
 
 - Wait until the image creation progress becomes 100%. 
 
-![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_3.png)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step4_3.png)
+
 
 #### Step 5 (Optional): Setup Auto Scaling (ESS) for ECS auto scaling
 Follow these steps to enable Alibaba Cloud Auto Scaling: 
