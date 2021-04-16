@@ -26,7 +26,7 @@ ssh root@<EIP_ECS>
 ```
 If you met this error when ssh to ECS, please go to **/Users/xxx/.ssh/known_hosts, VI to edit the file and remove the whole line with the EIP of the target ECS at the very beginning. After that, please SSH to log on again.**
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618452637798-418cca31-1866-439e-8a55-aca4dfdc73f7.png#from=paste&height=236&id=udd9cdbe7&margin=%5Bobject%20Object%5D&originHeight=236&originWidth=604&originalType=binary&size=105127&status=done&style=none&taskId=u5ac34d3c-158e-4947-bdf6-645ca494313&width=604)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_1.png)
 
 
 - Run the following command to install required utilities on the instance: 
@@ -82,7 +82,7 @@ http://<ECS_EIP>/info.php
 ```
 If the following page appears, PHP is installed successfully.
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618477829476-63fd619b-a3a6-4b02-ab53-2c3fc32cef86.png#clientId=u3793cc38-94f2-4&from=paste&height=822&id=uff3092f4&margin=%5Bobject%20Object%5D&originHeight=822&originWidth=948&originalType=binary&size=152454&status=done&style=none&taskId=u5f9c5aad-1ae7-4ded-bd74-2a60853b3e1&width=948)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_2.png)
 
 
 #### Step 2: Install and configure Wordpress on ECS
@@ -113,9 +113,9 @@ Do not include the port number.  Please use the Cluster endpoint of PolarDB. |
 
 Endpoint on PolarDB web console:
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618476537703-e240c78b-c728-4bf8-bc5a-acd78f25f3e2.png#clientId=u3793cc38-94f2-4&from=paste&height=217&id=u90d13e09&margin=%5Bobject%20Object%5D&originHeight=217&originWidth=725&originalType=binary&size=77706&status=done&style=none&taskId=u8bc2e506-95f5-480b-904b-405a5bde7f8&width=725)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step2_1.png)
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618476435764-0a0efd58-0116-4dd7-9462-b13f55dc3edd.png#clientId=u3793cc38-94f2-4&from=paste&height=322&id=u148486bc&margin=%5Bobject%20Object%5D&originHeight=322&originWidth=559&originalType=binary&size=187947&status=done&style=none&taskId=u9f55fbd0-d7a0-44de-9d6a-6e65e535033&width=559)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step2_2.png)
 
 Run the following commands in sequence to copy the wordpress folder to the /var/www/html/ path: 
 ```bash
@@ -131,11 +131,11 @@ Note: Replace the <ECS_EIP> placeholder with the Elastic IP address of the ECS i
 
 Then complete the settings and click "Install WordPress".
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618478161980-13cb7d20-ed28-4ff7-81d1-a8f61f9f016b.png#clientId=u3793cc38-94f2-4&from=paste&height=911&id=uf704a6c9&margin=%5Bobject%20Object%5D&originHeight=911&originWidth=767&originalType=binary&size=229961&status=done&style=none&taskId=uafd81d19-0bf7-4f41-abe7-2d73610949d&width=767)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step2_3.png)
 
 Then the following page shows, which means the installation is success.
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618478290162-8f1c46f4-faf1-4129-96fb-d512a71f79c4.png#clientId=u3793cc38-94f2-4&from=paste&height=418&id=uacb62d4f&margin=%5Bobject%20Object%5D&originHeight=418&originWidth=753&originalType=binary&size=60829&status=done&style=none&taskId=u6923e8a5-3de0-4b02-9e46-668ebf9081f&width=753)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step2_4.png)
 
 #### Step 3: Configure Redis caching
 Run the following commands in sequence to download the Redis object cache plugin and unzip the plugin package: 
@@ -167,7 +167,7 @@ define( 'WP_REDIS_DATABASE', '0');
 define( 'WP_REDIS_PASSWORD', 'test_redis:N1cetest' );
 ```
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618543286206-d342cc5d-cca9-44d6-8e1f-1db17d11bad4.png#clientId=u8718978c-8794-4&from=paste&height=450&id=u51bbdbbf&margin=%5Bobject%20Object%5D&originHeight=450&originWidth=612&originalType=binary&size=253648&status=done&style=none&taskId=ue0aa425e-ca8f-42b2-8954-49bc427dc0b&width=612)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_1.png)
 
 Please MAKE SURE this Redis setting block is set at the first settings block of the wp-config.php file as shown in the image above.
 
@@ -178,23 +178,23 @@ cp /var/www/html/wp-content/plugins/redis-cache/includes/object-cache.php /var/w
 ```
 Log on to WordPress to enable Redis object cache. 
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618479467272-056a1cc5-2e99-480f-a5e2-8b54cd83b939.png#clientId=u3793cc38-94f2-4&from=paste&height=496&id=u697cad79&margin=%5Bobject%20Object%5D&originHeight=496&originWidth=378&originalType=binary&size=74133&status=done&style=none&taskId=u0fd01053-fa4c-49f9-a144-fa18c6d735d&width=378)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_2.png)
 
 In the left-side navigation pane, click Plugins. Find the Redis Object Cache plugin and click Activate.  
 After the plugin is activated, click Settings. 
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618543153189-e4dc41f7-d799-433b-9cc0-b54c404b7daa.png#clientId=u8718978c-8794-4&from=paste&height=541&id=u332ee57e&margin=%5Bobject%20Object%5D&originHeight=541&originWidth=1478&originalType=binary&size=363499&status=done&style=none&taskId=ue9660c95-7e86-4a01-a809-7c819a0f088&width=1478)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_3.png)
 
 Verify that the plugin status is Connected. Click Flush Cache to synchronize cache data to the ApsaraDB for Redis instance.
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618543434894-234e5efe-8a36-404c-9eae-f41d99627a49.png#clientId=u8718978c-8794-4&from=paste&height=742&id=ua4e92053&margin=%5Bobject%20Object%5D&originHeight=742&originWidth=922&originalType=binary&size=219319&status=done&style=none&taskId=uddff0d38-6297-4e94-8484-0a6a02bfeb5&width=922)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_4.png)
 
 Now, your cloud native Wordpress has been setup successfully. You can visit it via SLB EIP:
 ```php
 http://<SLB_EIP>/
 ```
 
-![](https://intranetproxy.alipay.com/skylark/lark/0/2021/png/32590/1618545083746-458b7811-82e2-4521-973f-8e883f51da2f.png#clientId=u8718978c-8794-4&from=paste&height=591&id=ue3af758d&margin=%5Bobject%20Object%5D&originHeight=591&originWidth=1110&originalType=binary&size=144207&status=done&style=none&taskId=u28f742d0-5384-417f-a289-451bd7a8ebb&width=1110)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_5.png)
 
 #### Step 4: Make custom ECS image for auto scaling
 
