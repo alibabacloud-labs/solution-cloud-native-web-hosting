@@ -66,6 +66,19 @@ Then restart Apache HTTP Server:
 ```bash
 service httpd restart
 ```
+Configure to auto start httpd service when ECS restarting:
+```bash
+chmod +x /etc/rc.d/rc.local
+vim /etc/rc.d/rc.local
+```
+Add the line at the end and save:
+```bash
+service httpd restart
+```
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_1_1.png)
+
+
 Create a PHP file to verify the PHP is working:
 ```bash
 vim /var/www/html/info.php
@@ -196,12 +209,160 @@ http://<SLB_EIP>/
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_5.png)
 
-#### Step 4: Make custom ECS image for auto scaling
+#### Step 4 (Optional): Make custom ECS image for auto scaling
+Follow these steps to create an image from the ECS instance: 
+
+- Log on to the ECS console. Click "Images" in the left-side navigation pane, then Click "Create Now".
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step4_1.png)
+
+- Select "Instance", select the target ECS that with WordPress installed previously, enter a name and a description for the image, and then click "Create". In this lab, the image name is wp_image. 
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_2.png)
+
+- Wait until the image creation progress becomes 100%. 
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_3.png)
+
+#### Step 5 (Optional): Setup Auto Scaling (ESS) for ECS auto scaling
+Follow these steps to enable Alibaba Cloud Auto Scaling: 
+
+- Log on to the Auto Scaling console. Click "Create Scaling Group".
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_1.png)
+
+- Select "Create from Scratch" and click "Start Creation". 
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_2.png)
+
+- In the "Create Scaling Group" section, complete the settings as follows: 
+| Setting | Value & Description |
+| --- | --- |
+| Scaling Group Name   | wp_auto_scaling |
+| Instance Configuration Source | Create from Scratch |
+| Instance Removing Policy | 
+- For "Filter First", select "Earliest Instance Created Using Scaling Configuration".
+- For "Then Remove from Results", select "Most 
+
+Recent Created Instance". |
+| Minimum Number of Instances  | 2 |
+| Maximum Number of Instances  | 5 |
+| Default Cooldown Time (Seconds)  | 300 |
+| Network Type | VPC |
+| Multi-zone Scaling Policy  | Balanced Distribution Policy  |
+| Instance Reclaim Mode  | Release Mode |
+| VPC | Select the VPC created before by Terraform |
+| Select VSwitch | Select all the VSwitches created before by Terraform. There are 2 VSW. |
+| Associate SLB Instance | Select the SLB created before by Terraform. |
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_3.png)
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_4.png)
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_5.png)
+
+- Click "OK" to finish the creation of the scaling group.
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_6.png)
+
+- Click "Add Scaling Configuration".
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_7.png)
+
+- Complete the settings as following:
+| Setting | Value & description |
+| --- | --- |
+| Billing Method | Pay-As-You-Go |
+| Instance Type | **ecs.g5.xlarge **and **ecs.c5.xlarge** |
+| Image | Click "**Custom Image" **and select the
+**"wp_image" **image that you created
+previously. |
+| Storage | Select "**Ultra Disk" **and "40 GiB" for the system
+disk. Click "**Add Disk" **and select "**Ultra Disk"
+**and "100 GiB" for the data disk. |
+| Security Group | Select the** **security group that you created previously. |
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_8.png)
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_9.png)
+
+- In the **Logon Credentials **section, select “**Inherit Password from Image**”. In the **Instance Name **field, enter a name for the instance. In this lab, we use WP. Then click "Preview".
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_10.png)
+
+- In the **Scaling Configuration Name **field, enter a name for the scaling configuration. In this lab, we use wp_as_group. Then click "Create".
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_11.png)
+
+- Wait until the success message appears. Click "**Enable Configuration" and "OK" **to enable the scaling configuration.
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_12.png)
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_13.png)
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_14.png)
+
+- Click the "**Manually Added" **tab and then click "**Add Existing Instances"**.
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_15.png)
+
+- Add the ECS that you installed WordPress previously.
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_16.png)
+
+- Follow the following steps to create 2 scaling rules (ADD and DROP).
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_17.png)
+
+| Setting | Value & description |
+| --- | --- |
+| Name | ADD1 |
+| Rule Type | Simple Scaling Rule |
+| Operation | Add 1 Instances |
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_18.png)
+
+| Setting | Value & description |
+| --- | --- |
+| Name | DROP1 |
+| Rule Type | Simple Scaling Rule |
+| Operation | Remove 1 Instances |
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_19.png)
+
+- Follow the following steps to create 2 event triggered taskes mapping to the scaling rules respectively (CPU busy to ADD, CPU idle to DROP).
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_20.png)
+
+| Setting | Value & description |
+| --- | --- |
+| Task Name | cpu_busy |
+| Resource Monitored | Select the **wp_auto_scaling **scaling group
+you created previously. |
+| Monitoring Type | System Monitoring |
+| Monitoring Metric | (ECS) CPU Utilization |
+| Condition | Average >= Threshold 70% |
+| Triggered Rule | Select the **ADD1 **rule you created previously. |
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_21.png)
+
+| Setting | Value & description |
+| --- | --- |
+| Task Name | cpu_idle |
+| Resource Monitored | Select the **wp_auto_scaling **scaling group
+you created previously. |
+| Monitoring Type | System Monitoring |
+| Monitoring Metric | (ECS) CPU Utilization |
+| Condition | Average <= Threshold 50% |
+| Triggered Rule | Select the **DROP1 **rule you created previously. |
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_22.png)
+
+- Verify that the statuses of new scaling tasks are both **Normal**.
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_23.png)
 
 
-#### Step 5: Setup ESS for ECS auto scaling
 
-
-#### Step 6: Setup DNS domain
 
 
