@@ -121,9 +121,7 @@ Complete the database configurations as follows:
 | DB_NAME | The name of the ApsaraDB for PolarDB database that you created.  In this tutorial, we use "wpdb", which is predefined in resource "alicloud_polardb_database" within Terraform script [https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/blob/main/deployment/terraform/main.tf](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/blob/main/deployment/terraform/main.tf). |
 | DB_USER | The user name of the database account you created. In this lab, we use "test_polardb" as predefined within Terraform script.  |
 | DB_PASSWORD | The password of the database account you created within Terraform script. In this lab, we use "N1cetest" as predefined within Terraform script. |
-| DB_HOST | The VPC-facing endpoint of the ApsaraDB for 
-PolarDB cluster that you obtained previously. 
-Do not include the port number.  Please use the Cluster endpoint of PolarDB. |
+| DB_HOST | The VPC-facing endpoint of the ApsaraDB for PolarDB cluster that you obtained previously. Do not include the port number.  Please use the Cluster endpoint of PolarDB. |
 
 Endpoint on PolarDB web console:
 
@@ -211,7 +209,6 @@ http://<SLB_EIP>/
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step3_5.png)
 
-
 #### Step 4 (Optional): Make custom ECS image for auto scaling
 Follow these steps to create an image from the ECS instance: 
 
@@ -227,7 +224,6 @@ Follow these steps to create an image from the ECS instance:
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step4_3.png)
 
-
 #### Step 5 (Optional): Setup Auto Scaling (ESS) for ECS auto scaling
 Follow these steps to enable Alibaba Cloud Auto Scaling: 
 
@@ -240,15 +236,12 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_2.png)
 
 - In the "Create Scaling Group" section, complete the settings as follows: 
+
 | Setting | Value & Description |
 | --- | --- |
 | Scaling Group Name   | wp_auto_scaling |
 | Instance Configuration Source | Create from Scratch |
-| Instance Removing Policy | 
-- For "Filter First", select "Earliest Instance Created Using Scaling Configuration".
-- For "Then Remove from Results", select "Most 
-
-Recent Created Instance". |
+| Instance Removing Policy | For "Filter First", select "Earliest Instance Created Using Scaling Configuration". For "Then Remove from Results", select "Most Recent Created Instance". |
 | Minimum Number of Instances  | 2 |
 | Maximum Number of Instances  | 5 |
 | Default Cooldown Time (Seconds)  | 300 |
@@ -274,16 +267,13 @@ Recent Created Instance". |
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_7.png)
 
 - Complete the settings as following:
+
 | Setting | Value & description |
 | --- | --- |
 | Billing Method | Pay-As-You-Go |
 | Instance Type | **ecs.g5.xlarge **and **ecs.c5.xlarge** |
-| Image | Click "**Custom Image" **and select the
-**"wp_image" **image that you created
-previously. |
-| Storage | Select "**Ultra Disk" **and "40 GiB" for the system
-disk. Click "**Add Disk" **and select "**Ultra Disk"
-**and "100 GiB" for the data disk. |
+| Image | Click "**Custom Image" **and select the **"wp_image" **image that you created previously. |
+| Storage | Select "**Ultra Disk" **and "40 GiB" for the system disk. Click "**Add Disk" **and select "**Ultra Disk"** and "100 GiB" for the data disk. |
 | Security Group | Select the** **security group that you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_8.png)
