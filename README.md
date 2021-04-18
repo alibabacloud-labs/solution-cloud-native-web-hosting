@@ -1,14 +1,22 @@
 # Cloud Native WordPress on Alibaba Cloud
 Quick start with Wordpress on Alibaba Cloud with cloud native features such as high availability, auto-scaling, etc.
 
-[TOC]
-
 ### Project URL
 [https://github.com/alibabacloud-labs/solution-cloud-native-wordpress](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress)
 
 
 ### Architecture Overview
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/archi.png)
+
+### Index
+- Deployment
+  - [Terraform](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#terraform)
+- Run Demo
+  - [Step 1: Install Apache HTTP Server and PHP on ECS](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-1-install-apache-http-server-and-php-on-ecs)
+  - [Step 2: Install and configure Wordpress on ECS](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-2-install-and-configure-wordpress-on-ecs)
+  - [Step 3: Configure Redis caching](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-3-configure-redis-caching)
+  - [Step 4 (Optional): Make custom ECS image for auto scaling](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-4-optional-make-custom-ecs-image-for-auto-scaling)
+  - [Step 5 (Optional): Setup Auto Scaling (ESS) for ECS auto scaling](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-5-optional-setup-auto-scaling-ess-for-ecs-auto-scaling)
 
 ### Deployment
 #### Terraform
