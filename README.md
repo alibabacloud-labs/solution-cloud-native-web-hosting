@@ -31,7 +31,7 @@ For more information about how to use Terraform, please refer to this tutorial: 
 
 #### Step 1: Install Apache HTTP Server and PHP on ECS
 
-- Logon to ECS via SSH
+- Logon to ECS via SSH, use the account root/N1cetest, the password has been predefined in Terraform script for this tutorial. If you changed the password, please use the correct password accordingly.
 
 ```bash
 ssh root@<EIP_ECS>
