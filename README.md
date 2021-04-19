@@ -17,6 +17,7 @@ Quick start with Wordpress on Alibaba Cloud with cloud native features such as h
   - [Step 3: Configure Redis caching](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-3-configure-redis-caching)
   - [Step 4 (Optional): Make custom ECS image for auto scaling](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-4-optional-make-custom-ecs-image-for-auto-scaling)
   - [Step 5 (Optional): Setup Auto Scaling (ESS) for ECS auto scaling](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-5-optional-setup-auto-scaling-ess-for-ecs-auto-scaling)
+  - [Step 6 (Optional): Simulate fluctuating traffic to trigger auto scaling](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress#step-6-optional-simulate-fluctuating-traffic-to-trigger-auto-scaling)
 
 ### Deployment
 #### Terraform
@@ -388,6 +389,8 @@ you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_1.png)
 
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_2.png)
+
 - Log on to the ECS with EIP bound before, and run the sysbench to simulate the high CPU workload
 
 ```bash
@@ -396,10 +399,10 @@ sysbench cpu --cpu-max-prime=4000000 --threads=4 --time=1000 run
 
 - After for a while, verify the auto scaling event triggered with a new instance added
 
-![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_2.png)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_3.png)
 
 - After for a while, verify the SLB instance is attached with 3 ECS instances.
 
-![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_3.png)
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_4.png)
 
 - Then you can "ctrl + C" to stop the sysbench workload, and verify the ECS count backs to 2 following the "cpu_idle" auto scaling rule.
