@@ -137,7 +137,6 @@ vim wp-config.php
 ```
 Complete the database configurations as follows: 
 
-
 | Setting | Value & description |
 | --- | --- |
 | DB_NAME | The name of the ApsaraDB for PolarDB database that you created.  In this tutorial, we use "wpdb", which is predefined in resource "alicloud_polardb_database" within Terraform script [https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/blob/main/deployment/terraform/main.tf](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/blob/main/deployment/terraform/main.tf). |
@@ -187,6 +186,7 @@ cp -rf redis-cache /var/www/html/wp-content/plugins/
 vim /var/www/html/wp-config.php
 ```
 Complete the settings as follows: 
+
 | Setting | Value & Description |
 | --- | --- |
 | WP_REDIS_HOST | The internal endpoint of the ApsaraDB for Redis instance that you obtained previously. Such as r-xxxxx.redis.singapore.rds.aliyuncs.com |
