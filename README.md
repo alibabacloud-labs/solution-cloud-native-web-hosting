@@ -292,24 +292,24 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 | Setting | Value & description |
 | --- | --- |
 | Billing Method | Pay-As-You-Go |
-| Instance Type | **ecs.g5.xlarge **and **ecs.c5.xlarge** |
-| Image | Click "**Custom Image" **and select the **"wp_image" **image that you created previously. |
-| Storage | Select "**Ultra Disk" **and "40 GiB" for the system disk. Click "**Add Disk" **and select "**Ultra Disk"** and "100 GiB" for the data disk. |
-| Security Group | Select the** **security group that you created previously. |
+| Instance Type | ecs.g5.xlarge and ecs.c5.xlarge |
+| Image | Click "Custom Image" and select the "wp_image" image that you created previously. |
+| Storage | Select "Ultra Disk" and "40 GiB" for the system disk. Click "Add Disk" and select "Ultra Disk" and "100 GiB" for the data disk. |
+| Security Group | Select the security group that you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_8.png)
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_9.png)
 
-- In the **Logon Credentials **section, select “**Inherit Password from Image**”. In the **Instance Name **field, enter a name for the instance. In this lab, we use WP. Then click "Preview".
+- In the "Logon Credentials" section, select “Inherit Password from Image”. In the "Instance Name" field, enter a name for the instance. In this lab, we use WP. Then click "Preview".
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_10.png)
 
-- In the **Scaling Configuration Name **field, enter a name for the scaling configuration. In this lab, we use wp_as_group. Then click "Create".
+- In the "Scaling Configuration Name" field, enter a name for the scaling configuration. In this lab, we use wp_as_group. Then click "Create".
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_11.png)
 
-- Wait until the success message appears. Click "**Enable Configuration" and "OK" **to enable the scaling configuration.
+- Wait until the success message appears. Click "Enable Configuration" and "OK" to enable the scaling configuration.
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_12.png)
 
@@ -317,7 +317,7 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_14.png)
 
-- Click the "**Manually Added" **tab and then click "**Add Existing Instances"**.
+- Click the "Manually Added" tab and then click "Add Existing Instances".
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_15.png)
 
@@ -352,24 +352,24 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 | Setting | Value & description |
 | --- | --- |
 | Task Name | cpu_busy |
-| Resource Monitored | Select the **wp_auto_scaling **scaling group
+| Resource Monitored | Select the "wp_auto_scaling" scaling group
 you created previously. |
 | Monitoring Type | System Monitoring |
 | Monitoring Metric | (ECS) CPU Utilization |
 | Condition | Average >= Threshold 70% |
-| Triggered Rule | Select the **ADD1 **rule you created previously. |
+| Triggered Rule | Select the "ADD1" rule you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_21.png)
 
 | Setting | Value & description |
 | --- | --- |
 | Task Name | cpu_idle |
-| Resource Monitored | Select the **wp_auto_scaling **scaling group
+| Resource Monitored | Select the "wp_auto_scaling" scaling group
 you created previously. |
 | Monitoring Type | System Monitoring |
 | Monitoring Metric | (ECS) CPU Utilization |
 | Condition | Average <= Threshold 50% |
-| Triggered Rule | Select the **DROP1 **rule you created previously. |
+| Triggered Rule | Select the "DROP1" rule you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_22.png)
 
