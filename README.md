@@ -377,7 +377,7 @@ you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_23.png)
 
-- Verify that the statuses of SLB and the backend servers are **Normal**. 2 new ECS servers were scaled out by auto scaling service and attached to SLB instance for load balancing.
+- After for a while, verify that the statuses of SLB and the backend servers are **Normal**. 1 new ECS server were scaled out by auto scaling service and attached to SLB instance for load balancing.
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_24.png)
 
