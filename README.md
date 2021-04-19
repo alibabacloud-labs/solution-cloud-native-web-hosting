@@ -317,7 +317,7 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_14.png)
 
-- Click the "Manually Added" tab and then click "Add Existing Instances".
+- Click the "Instances", "Manually Added" tab and then click "Add Existing Instances".
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_15.png)
 
