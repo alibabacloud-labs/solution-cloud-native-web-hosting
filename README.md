@@ -32,9 +32,20 @@ For more information about how to use Terraform, please refer to this tutorial: 
 #### Step 1: Install Apache HTTP Server and PHP on ECS
 
 - Logon to ECS via SSH
+
 ```bash
 ssh root@<EIP_ECS>
 ```
+
+There are 2 ways to get the EIP applied for the ECS in Terraform:
+- Go to ECS web console:
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_0_1.png)
+
+- In the command line, under the same folder of the terraform script file main.tf, open "terraform.tfstate":
+
+![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_0_2.png)
+
 If you met this error when ssh to ECS, please go to **/Users/xxx/.ssh/known_hosts, VI to edit the file and remove the whole line with the EIP of the target ECS at the very beginning. After that, please SSH to log on again.**
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step1_1.png)
