@@ -353,8 +353,7 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 | Setting | Value & description |
 | --- | --- |
 | Task Name | cpu_busy |
-| Resource Monitored | Select the "wp_auto_scaling" scaling group
-you created previously. |
+| Resource Monitored | Select the "wp_auto_scaling" scaling group you created previously. |
 | Monitoring Type | System Monitoring |
 | Monitoring Metric | (ECS) CPU Utilization |
 | Condition | Average >= Threshold 70% |
@@ -365,8 +364,7 @@ you created previously. |
 | Setting | Value & description |
 | --- | --- |
 | Task Name | cpu_idle |
-| Resource Monitored | Select the "wp_auto_scaling" scaling group
-you created previously. |
+| Resource Monitored | Select the "wp_auto_scaling" scaling group you created previously. |
 | Monitoring Type | System Monitoring |
 | Monitoring Metric | (ECS) CPU Utilization |
 | Condition | Average <= Threshold 50% |
