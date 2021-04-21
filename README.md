@@ -293,7 +293,7 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 | Setting | Value & description |
 | --- | --- |
 | Billing Method | Pay-As-You-Go |
-| Instance Type | ecs.g5.xlarge and ecs.c5.xlarge, or you can select other ECS type to the optional list for auto scaling |
+| Instance Type | ecs.g5.xlarge and ecs.c5.xlarge, or you can select other ECS class to the optional list for auto scaling |
 | Image | Click "Custom Image" and select the "wp_image" image that you created previously. |
 | Storage | Select "Ultra Disk" and "40 GiB" for the system disk. Click "Add Disk" and select "Ultra Disk" and "100 GiB" for the data disk. |
 | Security Group | Select the security group that you created previously. |
