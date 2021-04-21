@@ -293,7 +293,7 @@ Follow these steps to enable Alibaba Cloud Auto Scaling:
 | Setting | Value & description |
 | --- | --- |
 | Billing Method | Pay-As-You-Go |
-| Instance Type | ecs.g5.xlarge and ecs.c5.xlarge |
+| Instance Type | ecs.g5.xlarge and ecs.c5.xlarge, or you can select other ECS type to the optional list for auto scaling |
 | Image | Click "Custom Image" and select the "wp_image" image that you created previously. |
 | Storage | Select "Ultra Disk" and "40 GiB" for the system disk. Click "Add Disk" and select "Ultra Disk" and "100 GiB" for the data disk. |
 | Security Group | Select the security group that you created previously. |
@@ -378,7 +378,7 @@ you created previously. |
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_23.png)
 
-- After for a while, verify that the statuses of SLB and the backend servers are **Normal**. 1 new ECS server were scaled out by auto scaling service and attached to SLB instance for load balancing.
+- After for a while (since the default setting is "triggered after 3 times for each 1 minute reference period", so please be patient to wait at least 3 minutes), verify that the statuses of SLB and the backend servers are **Normal**. 1 new ECS server were scaled out by auto scaling service and attached to SLB instance for load balancing.
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step5_24.png)
 
@@ -397,7 +397,7 @@ you created previously. |
 sysbench cpu --cpu-max-prime=4000000 --threads=4 --time=1000 run
 ```
 
-- After for a while, verify the auto scaling event triggered with a new instance added
+- After for a while (since the default setting is "triggered after 3 times for each 1 minute reference period", so please be patient to wait at least 3 minutes), verify the auto scaling event triggered with a new instance added
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_3.png)
 
@@ -405,4 +405,4 @@ sysbench cpu --cpu-max-prime=4000000 --threads=4 --time=1000 run
 
 ![image.png](https://github.com/alibabacloud-labs/solution-cloud-native-wordpress/raw/main/images/step6_4.png)
 
-- Then you can "ctrl + C" to stop the sysbench workload, and verify the ECS count backs to 2 following the "cpu_idle" auto scaling rule.
+- Then you can "ctrl + C" to stop the sysbench workload, and verify the ECS count backs to 2 following the "cpu_idle" auto scaling rule after the rule event is triggered.
